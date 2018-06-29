@@ -60,7 +60,7 @@ class Player(Character):
         inp = input("You-Know-Who needs your name. \n\n>>")
         super(Player, self).setInfo(inp, 1, 100)
         self.sp = 100
-        self.inventory = {}
+        self.invent = {}
 
 
     def info(self):
@@ -72,29 +72,27 @@ class Player(Character):
 
     # Creates a key, value pair for objects added to inventory
     def addToInventory(self, obj):
-        self.inventory[f'{obj.name}'] = obj
+        self.invent[f'{obj.name}'] = obj
 
 
     def displayInventory(self):
-        print(self.inventory)
+        print(self.invent)
 
     # On using weapon, the sp of player is reduced and the damage value is
     # returned which will be used as damage done to enemy
     # If the player does not have enough stamina then 0 damage will be
     # done to enemy
 
-    def useWeapon(self, weapon):
-        if weapon in self.inventory.keys():
-            weapon_obj = self.inventory[weapon]
-            if self.sp > weapon_obj.sta_cost:
-                self.sp -= weapon_obj.sta_cost
-                return randint(*weapon_obj.dmg_range)
-            else:
-                print('Not enough sp')
-                return 0
+    def attack(self):
+        inp = input('')	
+        if inp in self.invent.keys():
+        	weapon = self.invent[inp]
+        	self.sp -= weapon.sta_cost
+        	return randint(*weapon.dmg_range)
         else:
-            print(f'{weapon} not in inventory')
-
+            print('Missed')
+            return 0
+	
 class Enemy(Character):
 
     #inventory = {'Sword': (5,15), 'Gun': (10,25)}

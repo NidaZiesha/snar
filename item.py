@@ -13,17 +13,15 @@ class Item(object):
     #           2 - Consumables #(yep i was gonna type that) potion
     # value - value which will be converted to gold on selling at shop
     #      (Not added yet). Type:int
-    def __init__(self, name, desc='No description.', item_type=0, value=1):
+    def __init__(self, name, desc='No description.', value=1):
         self.name = name
         self.description = desc
-        self.item_type = item_type
         self.value = value
 
     # Displays information of the item when called
     def info(self):
         print('Name: ', self.name)
         print('Desc: ',self.description)
-        print('Type: ', self.item_type)
         print('Value: ',self.value)
 
 class Weapon(Item):
@@ -31,8 +29,8 @@ class Weapon(Item):
     #   use super to assign name, desc, item_type, value to prevent repetitive code
     # dmg_range - tuple containing 2 values - min and max damage of the weapon
     # sta_cost  - 'Stamina Cost'. Type:int
-    def __init__(self, name, desc, dmg_range, sta_cost, item_type=0, value=1):
-        super(Weapon, self).__init__(name, desc, item_type, value)
+    def __init__(self, name, desc, dmg_range, sta_cost, value=1):
+        super(Weapon, self).__init__(name, desc, value)
         # self.min_dmg = min_dmg
         # self.max_dmg = max_dmg
         self.dmg_range = dmg_range

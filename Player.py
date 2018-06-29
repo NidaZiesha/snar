@@ -9,8 +9,13 @@ HP (Health Points are supposed to be common for both the types of Characters)
 
 
 """
+from item import Weapon
+from random import randint
 class Character(object):
     # Set values during Object (Character) initialization
+	def __init__(self):
+		self.invent = {}
+		
     def setInfo(self, name, type, hp):
         self.name = name
         self.type = type
@@ -30,19 +35,15 @@ class Character(object):
                 print(f"You defeated {self.name}")
                 del(self) # Deletes the Enemy object, frees memory
 
-    def attack(self, enemy):
-        if self.type == 1:
-            print("Select your weapon to attack!\n")
-            self.showInventory()
-            print("\n\nWhat do you wanna use?")
-            weapon = input().capitalize()
-            print(weapon)
+ 
+			
+            
 
 
 class Player(Character):
     """docstring for Player."""
 
-    inventory = {'Sword': (10,20), 'Gun': (15,30)}
+    inventory = {'sword': (10,20), 'gun': (15,30)}
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
         super(Player, self).setInfo(inp, 1, 100)
@@ -58,11 +59,23 @@ class Player(Character):
         print("\nHere's the stuff in your Backpack\n\n")
         for items in self.inventory:
             print(items)
+			
+	 # Creates a key, value pair for objects added to inventory
+    def addToInventory(self, obj):
+        self.inventory[f'{obj.name}'] = obj
+			
+	def attack(self):
+		weapon = input()
+		if weapon in invent.keys():
+			return randint(*invent[weapon].dmg_range)
+		else:
+			print('MISSED')
+			
 
 
 
-player = Player()
-player.setInfo()
-player.display()
-player.isAlive()
-player.attack(player)
+
+	
+#player = Player()
+#claws = Weapon('claws', 'Made with Goblin Iron', (10,20), 2, 1, 2)
+#player.addToInventory(claws)
