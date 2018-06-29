@@ -1,4 +1,4 @@
-import random
+from random import randint
 class Item(object):
     # Base class for 'Weapon' class and 'Potions' class
     # __init__ takes name, desc - description, item_type and value
@@ -31,8 +31,6 @@ class Weapon(Item):
     # sta_cost  - 'Stamina Cost'. Type:int
     def __init__(self, name, desc, dmg_range, sta_cost, value=1):
         super(Weapon, self).__init__(name, desc, value)
-        # self.min_dmg = min_dmg
-        # self.max_dmg = max_dmg
         self.dmg_range = dmg_range
         self.sta_cost = sta_cost
 

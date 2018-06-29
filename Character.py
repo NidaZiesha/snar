@@ -2,13 +2,14 @@ from random import randint
 # Stamina changed to sp (Stamina Points)
 class Character(object):
 
-   	def setInfo(self, name, hp):
-   		self.name = name
-   		self.hp = hp
-   		self.invent = {}
+	def setInfo(self, name, hp):
+		self.name = name
+		self.hp = hp
+		self.invent = {}
 
 	def isAlive(self):
-		if self.hp > 0:
+
+		if self.hp >0:
 			print(f"{self.name} is Alive.")
 			return 1
 		else:
@@ -21,7 +22,7 @@ class Player(Character):
 
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
-        super(Player, self).setInfo(inp, 1, 100)
+        super(Player, self).setInfo(inp, 100)
         self.sp = 100
         self.invent = {}
 
@@ -65,5 +66,5 @@ class Enemy(Character):
         print(f"{self.name} hp: {self.hp}")
 
     def attack(self, target):
-        target.hp -= randint(*self.weapon.dmg_range)
+        target.hp -= randint(*self.dmg_range)
 
