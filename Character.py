@@ -2,59 +2,22 @@ from random import randint
 # Stamina changed to sp (Stamina Points)
 class Character(object):
 
-    # __repr__ should return str type.
-    # def __repr__(self):
-    #     name = self.name
-    #     return name
+   	def setInfo(self, name, hp):
+   		self.name = name
+   		self.hp = hp
+   		self.invent = {}
 
-    def setInfo(self, name, type, hp):
-        self.name = name
-        self.type = type
-        self.hp = hp
-
-    def isAlive(self):
-        if self.type == 1:
-            if self.hp > 0:
-                #print("You're still Alive")
-                return 1
-            else:
-                print("You is dead. You didn't play well, huh")
-                return 0
-
-        elif self.type == 2:
-            if self.hp > 0:
-                return 1
-            else:
-                print(f"You defeated {self.name}")
-                del(self)
-                return 0
-
-    # Is this attack type needed? We'll create a combat function where the
-    # player can choose what weapon to use
-
-    #def attack(self, enemy):
-
-    #    if self.type == 1:
-    #        print("Select your weapon to attack!\n")
-
-            #for weapons in self.inventory:
-            #    print (weapons)
-
-            # print("\n\nWhat do you wanna use?")
-            # weapon = input().capitalize()
-            # print(weapon)
-        #elif self.type == 2:
-
-            #for weapons in self.inventory:
-                #print (weapons)
-                #print("Enemy's weapon choice", weapon )
-        #else:
-            #return
+	def isAlive(self):
+		if self.hp > 0:
+			print(f"{self.name} is Alive.")
+			return 1
+		else:
+			print(f"{self.name} is Dead.")
+			return 0
+  
 
 class Player(Character):
     """docstring for Player."""
-
-    #inventory = {'Sword': (10,20), 'Gun': (15,30)}
 
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
@@ -65,10 +28,6 @@ class Player(Character):
 
     def info(self):
         print(f"{self.name} hp: {self.hp} sta: {self.sp}")
-
-    # Is this function needed? The player has a default inventory
-    #def makeInventory(self):
-    #    self.inventory = {}
 
     # Creates a key, value pair for objects added to inventory
     def addToInventory(self, obj):
@@ -96,10 +55,11 @@ class Player(Character):
 class Enemy(Character):
 
     #inventory = {'Sword': (5,15), 'Gun': (10,25)}
-    def setInfo(self, name, hp, weapon):
-        super(Enemy, self).setInfo(name, 2, hp)
-        self.sp = 100
-        self.weapon = weapon
+    def __init__(self, name, hp, dmg_range):
+    	self.name = name
+    	self.hp = hp
+    	self.dmg_range = dmg_range
+    	self.invent = {}
 
     def info(self):
         print(f"{self.name} hp: {self.hp}")
@@ -107,24 +67,3 @@ class Enemy(Character):
     def attack(self, target):
         target.hp -= randint(*self.weapon.dmg_range)
 
-"""player = Player()
-player2 = Player()
-player2.makeInventory()
-player2.addToInventory({'Sword':(10, 20)})
-enemy = Enemy()
-player.setInfo()
-player.info()
-player.isAlive()
-player.attack(player)
-enemy.setInfo()
-enemy.isAlive()
-enemy.display()
-enemy.attack(enemy)
-player.makeInventory()
-player.addToInventory({'Gun' : (20,30)})
-player.displayInventory()
-"""
-
-"""print('enter anything >> ')
-i = input().capitalize()
-print(i)"""
