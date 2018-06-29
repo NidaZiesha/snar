@@ -23,3 +23,9 @@ All NPC classes should be in this file.
  **item** - 
  Contains base class _Item_ for sub-class _Weapon_.
  May have more sub-classes like _Potion_, _Food_ in the future.
+ 
+ #### Authors
+1. Nida Shaikh
+2. Saaraa Kazi
+3. Ammaar Solkar
+4. Raghib Siddique
