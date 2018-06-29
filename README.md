@@ -1,6 +1,6 @@
 # snar
 A text based role playing game.
-Files:
+### Files:
 1. Actions
 2. Character
 3. \_enemies
