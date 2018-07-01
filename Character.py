@@ -47,7 +47,7 @@ class Player(Character):
     def attack(self, target):
         inp = input('>>')
         weapon_val = parse_input(inp, target)
-        if weapon_val:
+        if weapon_val in self.invent.keys():
             weapon = self.invent[weapon_val]
             self.sp -= weapon.sta_cost
             target.hp -= randint(*weapon.dmg_range)
