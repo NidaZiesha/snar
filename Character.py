@@ -45,11 +45,11 @@ class Player(Character):
     def attack(self, target):
         inp = input('')
         if inp in self.invent.keys():
-        weapon = self.invent[inp]
-        self.sp -= weapon.sta_cost
-        target.hp -= randint(*weapon.dmg_range)
+            weapon = self.invent[inp]
+            self.sp -= weapon.sta_cost
+            target.hp -= randint(*weapon.dmg_range)
         else:
-        print('Missed')
+            print('Missed')
 
 class Enemy(Character):
 
