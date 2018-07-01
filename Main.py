@@ -9,5 +9,3 @@ player.setInfo()
 player.addToInventory(wood_sword)
 
 combat(player, spider)
-
-	
