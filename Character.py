@@ -22,7 +22,7 @@ class Player(Character):
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
         super(Player, self).setInfo(inp, 100)
-        self.gold = randint(0,100)
+        self.gold = 0
         self.sp = 100
         self.invent = {}
 
@@ -58,7 +58,7 @@ class Enemy(Character):
     def __init__(self, name, hp, gold, dmg_range):
     	self.name = name
     	self.hp = hp
-        self.gold = gold
+        self.gold = randint(10,100)
     	self.dmg_range = dmg_range
     	self.invent = {}
 
