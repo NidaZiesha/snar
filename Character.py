@@ -58,7 +58,7 @@ class Enemy(Character):
     def __init__(self, name, hp, gold, dmg_range):
     	self.name = name
     	self.hp = hp
-        self.gold = randint(10,100)
+        self.gold = gold
     	self.dmg_range = dmg_range
     	self.invent = {}
 
