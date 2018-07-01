@@ -22,7 +22,7 @@ class Player(Character):
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
         super(Player, self).setInfo(inp, 100)
-        self.gold = 0
+        self.gold = randint(0,100)
         self.sp = 100
         self.invent = {}
 
