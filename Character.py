@@ -17,7 +17,7 @@ class Character(object):
 
 
 class Player(Character):
-"""docstring for Player."""
+    """docstring for Player."""
 
     def setInfo(self):
         inp = input("You-Know-Who needs your name. \n\n>>")
