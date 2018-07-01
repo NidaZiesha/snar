@@ -1,4 +1,5 @@
 from random import randint
+from lexicon import *
 # Stamina changed to sp (Stamina Points)
 class Character(object):
 
@@ -44,9 +45,10 @@ class Player(Character):
     # done to enemy
 
     def attack(self, target):
-        inp = input('')
-        if inp in self.invent.keys():
-            weapon = self.invent[inp]
+        inp = input('>>')
+        weapon_val = parse_input(inp, target)
+        if weapon_val:
+            weapon = self.invent[weapon_val]
             self.sp -= weapon.sta_cost
             target.hp -= randint(*weapon.dmg_range)
         else:
@@ -56,11 +58,11 @@ class Enemy(Character):
 
     #inventory = {'Sword': (5,15), 'Gun': (10,25)}
     def __init__(self, name, hp, gold, dmg_range):
-    	self.name = name
-    	self.hp = hp
+        self.name = name
+        self.hp = hp
         self.gold = gold
-    	self.dmg_range = dmg_range
-    	self.invent = {}
+        self.dmg_range = dmg_range
+        self.invent = {}
 
     def info(self):
         print(f"{self.name} hp: {self.hp} gold: {self.gold}")
