@@ -29,7 +29,7 @@ class Player(Character):
 
 
     def info(self):
-        print(f"{self.name} hp: {self.hp} gold: {self.gold} sta: {self.sp}")
+        print(f"\n{self.name} hp: {self.hp} gold: {self.gold} sta: {self.sp}")
 
     # Creates a key, value pair for objects added to inventory
     def addToInventory(self, obj):
@@ -52,7 +52,7 @@ class Player(Character):
             self.sp -= weapon.sta_cost
             target.hp -= randint(*weapon.dmg_range)
         else:
-            print('Missed')
+            print('Missed') # If weapon not in inventory
 
 class Enemy(Character):
 

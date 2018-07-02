@@ -10,6 +10,10 @@ lexicon = {
             "weapons": weapons
            }
 
+weapon = None
+action = None
+enemy = None
+
 def attack(target, weapon):
     print(f'attack {target} with {weapon}')
 
@@ -19,21 +23,32 @@ def parse_input(player_input, target):
     words = player_input.split()
     # print(words)
 
-    if words[0] in actions:
-        if words[1] in enemies:
-            if words[1].capitalize() == target.name:
-                if words[3] in weapons:
-                    return words[3]
+    try:
+        for word in words:
+            if word in actions:
+                action = word
+                print(action)
+            elif word in enemies:
+                if word.capitalize() == target.name:
+                    enemy = word
+                else:
+                    enemy = None
+            elif word in weapons:
+                weapon = word
+            elif word in filler:
+                pass
             else:
-                print("Wrong enemy.")
-                return 0
+                action = None
+                weapon = None
+
+        if weapon and action and enemy:
+            print(weapon)
+            return weapon
         else:
-            print("\nThis enemy does not exists.\n")
-            return 0
-        #action = words[0]
-    else:
-        print(words[0], 'is not a recognized action.')
-        return 0
+            print("You gave a wrong input. Type with accuracy, will you?")
+            return None
 
-
+    except UnboundLocalError:
+            print("\nSomething's missing in your input.\nTurn missed.")
+            return None
 #parse_input(input())
