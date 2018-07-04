@@ -29,7 +29,7 @@ class Player(Character):
 
 
     def info(self):
-        print(f"{self.name} hp: {self.hp} gold: {self.gold} sta: {self.sp}")
+        print(f"\n{self.name} hp: {self.hp} gold: {self.gold} sta: {self.sp}")
 
     # Creates a key, value pair for objects added to inventory
     def addToInventory(self, obj):
@@ -37,7 +37,7 @@ class Player(Character):
 
 
     def displayInventory(self):
-        print(self.invent)
+        print([key for key in self.invent.keys()])
 
     # On using weapon, the sp of player is reduced and the damage value is
     # returned which will be used as damage done to enemy
@@ -52,7 +52,18 @@ class Player(Character):
             self.sp -= weapon.sta_cost
             target.hp -= randint(*weapon.dmg_range)
         else:
-            print('Missed')
+            print('Missed') # If weapon not in inventory
+
+    # The use method takes item name as argument.
+    # If the item exists in the inventory then call the 'use' method of the
+    # item. After using the item, delete it from the inventory.
+    def use(self, item):
+        if item.name in self.invent.keys():
+            item.use(self)
+            del self.invent[item.name]
+        else:
+            print('No such item in inventory.')
+
 
 class Enemy(Character):
 

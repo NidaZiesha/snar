@@ -6,11 +6,6 @@ class Item(object):
     #      for naming
     # description - provides description of the item. Not necessary
     #      Provided default value to allow quick creation of normal items
-    # item_type defaul is 0. For identifying type of item based on number.
-    #           Defaults:
-    #           0 - default
-    #           1 - Weapons
-    #           2 - Consumables #(yep i was gonna type that) potion
     # value - value which will be converted to gold on selling at shop
     #      (Not added yet). Type:int
     def __init__(self, name, desc='No description.', value=1):
@@ -23,6 +18,11 @@ class Item(object):
         print('Name: ', self.name)
         print('Desc: ',self.description)
         print('Value: ',self.value)
+
+    # The 'use' mehtod takes 'target' as argument where target is the name of
+    # the object the item will affect.
+    def use(self, target=None):
+        pass
 
 class Weapon(Item):
     #   takes name, desc, value, dmg_range, sta_cost
@@ -54,3 +54,20 @@ class Weapon(Item):
     def upgradeWeapon(self, new_range, new_sta_cost):
         self.dmg_range = new_range
         self.sta_cost = new_sta_cost
+
+# Class Food is sub-class of class Item.
+# It will be used as items which will heal/regen the players
+# hp and sp points
+# The extra param taken as compared to Item is hp_sp_amt which
+# will be tuples in the format (hp_heal_amt, sp_heal_amt)
+class Food(Item):
+
+    def __init__(self, name, desc, value=1, hp_sp_amt=(0,0)):
+        super(Food, self).__init__(name, desc, value)
+        self.hp_sp_amt = hp_sp_amt
+
+    # The 'use' mehtod takes 'target' as argument where target is the name of
+    # the object the item will affect.
+    def use(self, target):
+        target.hp += self.hp_sp_amt[0]
+        target.sp += self.hp_sp_amt[1]
